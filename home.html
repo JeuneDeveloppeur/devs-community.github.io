@@ -64,6 +64,25 @@
           <h1>Langage HTML</h1>
           <p>Bienvenue dans notre site web <strong><span style="color: blue;">Dev's community</span></strong>, un site particulierement concu pour les developpeurs web que ceux soient novices, experimentes ou professionnels souhaitant ameliorer leurs experiences sur le developpement web !</p>
       </div>
+      <br>
+      
+      <script>
+        document.getElementById("logoutBtn").addEventListener("click", function() {
+          localStorage.removeItem("currentUser");
+          alert("Déconnexion réussie !");
+          window.location.href = "login.html";
+        });
+      
+        // Vérifier si l'utilisateur est connecté
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (!currentUser) {
+          window.location.href = "login.html"; // Redirige vers la page de connexion si non connecté
+        } else {
+          // Afficher un message de bienvenue
+          document.getElementById("welcomeMessage").textContent = `Bienvenue, ${currentUser.username} !`;
+        }
+      </script>
+      
      
       <div class="container-fluid my-5">
         <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">

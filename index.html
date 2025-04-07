@@ -17,6 +17,7 @@
 
     
     <title>website</title>
+    
     <style>
         .hero-section {
       background-color: #343a40;
@@ -60,6 +61,7 @@
             <div class="text-end">
               <button type="button" class="btn btn-outline-light me-2"><a href="login.html" style="text-decoration: none;">Se connecter</a></button>
               <button type="button" class="btn btn-warning"><a href="signin.html" style="text-decoration: none;">S'inscrire</a></button>
+              <button type="button" class="btn btn-warning" id="logoutBtn"><a href="signin.html" style="text-decoration: none;">Déconnexion</a></button>
             </div>
           </div>
         </div>
@@ -71,7 +73,30 @@
           <a href="#" class="btn btn-primary btn-lg">En savoir plus</a>
         </div>
       </section>
-      
+      <div class="container welcome-container" style="background-color: lightcyan; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15 px rgba(0, 0, 0, 0.1); text-align: center; width: 100%;">
+        <h1 id="welcomeMessage" style="font-size: 28px; margin-bottom: 20px; columns: #333;">Bienvenue !</h1>
+        <p>Heureux de te revoir 😊</p>
+
+      </div>
+    
+      <script>
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    
+        if (!currentUser) {
+          // Redirige vers la connexion si aucun utilisateur connecté
+          window.location.href = "login.html";
+        } else {
+          // Affiche le prénom / pseudo
+          const name = currentUser.username || currentUser.email;
+          document.getElementById("welcomeMessage").textContent = `Bienvenue, ${name} !`;
+        }
+    
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+          localStorage.removeItem("currentUser");
+          alert("Déconnexion réussie !");
+          window.location.href = "login.html";
+        });
+      </script>
 
       <br>
       
